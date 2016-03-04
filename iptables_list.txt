@@ -1,0 +1,18 @@
+iptables -A OUTPUT -d playnet.hs.llnwd.net --proto tcp -j ACCEPT
+iptables -A OUTPUT -d gc-device-api.apps.playnetwork.com --proto tcp -j ACCEPT
+iptables -A OUTPUT -d master-gc-key-api.apps.playnetwork.com --proto tcp -j ACCEPT
+iptables -A OUTPUT -d master-player-svc.apps.playnetwork.com --proto tcp -j ACCEPT
+iptables -A OUTPUT -d master-gc-playback-api.apps.playnetwork.com --proto tcp -j ACCEPT
+iptables -A OUTPUT -d schedule.apps.playnetwork.com --proto tcp -j ACCEPT
+#these rules allow outbound communication to the URL's
+
+iptables -A OUTPUT --proto tcp -j DROP
+#this blocks outbound communication to any other destinations
+
+iptables -A FORWARD --proto tcp -j DROP
+#this blocks the routing or forwarding of traffic from an internal to external network
+iptables -A INPUT --proto tcp -j DROP
+#drops all input traffic
+
+
+ 
