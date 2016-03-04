@@ -4,15 +4,15 @@ iptables -A OUTPUT -d master-gc-key-api.apps.playnetwork.com --proto tcp -j ACCE
 iptables -A OUTPUT -d master-player-svc.apps.playnetwork.com --proto tcp -j ACCEPT
 iptables -A OUTPUT -d master-gc-playback-api.apps.playnetwork.com --proto tcp -j ACCEPT
 iptables -A OUTPUT -d schedule.apps.playnetwork.com --proto tcp -j ACCEPT
-#these rules allow outbound communication to the URL's
+#these rules allow outbound communication to the AWS URLs
 
 iptables -A OUTPUT --proto tcp -j DROP
-#this blocks outbound communication to any other destinations
+#this command blocks all TCP outbound communication except for the 6 rules above
 
 iptables -A FORWARD --proto tcp -j DROP
-#this blocks the routing or forwarding of traffic from an internal to external network
+#this blocks the routing or forwarding of traffic from an internal node through the player 
 iptables -A INPUT --proto tcp -j DROP
-#drops all input traffic
+#drops all inbound tcp traffic
 
 
  
